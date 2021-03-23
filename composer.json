@@ -1,0 +1,54 @@
+{
+    "name": "bencoderus/webhook",
+    "description": "The package allows clients/businesses to dispatch webhook to their users.",
+    "keywords": [
+        "bencoderus",
+        "webhook"
+    ],
+    "homepage": "https://github.com/bencoderus/webhook",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Benjamin Iduwe",
+            "email": "bencoderus@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.3",
+        "guzzlehttp/guzzle": "^7.0",
+        "illuminate/support": "^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bencoderus\\Webhook\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bencoderus\\Webhook\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Bencoderus\\Webhook\\WebhookServiceProvider"
+            ],
+            "aliases": {
+                "Webhook": "Bencoderus\\Webhook\\WebhookFacade"
+            }
+        }
+    }
+}

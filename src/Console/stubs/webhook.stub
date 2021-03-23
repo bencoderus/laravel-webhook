@@ -1,0 +1,25 @@
+<?php
+
+namespace {{ namespace }};
+
+use Bencoderus\Webhook\Webhooks\BaseWebhook;
+
+class {{ class }} extends BaseWebhook
+{
+    /**
+    * Webhook event name.
+    */
+    protected $event = 'webhook.name';
+
+    /**
+     * Webhook payload.
+     *
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+
+        ];
+    }
+}
