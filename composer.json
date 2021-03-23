@@ -1,11 +1,11 @@
 {
-    "name": "bencoderus/webhook",
+    "name": "bencoderus/laravel-webhook",
     "description": "The package allows clients/businesses to dispatch webhook to their users.",
     "keywords": [
         "bencoderus",
         "webhook"
     ],
-    "homepage": "https://github.com/bencoderus/webhook",
+    "homepage": "https://github.com/bencoderus/laravel-webhook",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^7.3",
+        "php": "^7.2.5|^8.0",
         "guzzlehttp/guzzle": "^7.0",
         "illuminate/support": "^6.0"
     },
