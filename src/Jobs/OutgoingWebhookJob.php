@@ -23,14 +23,14 @@ class OutgoingWebhookJob implements ShouldQueue
     /**
      * The Number of times a webhook would be retried.
      *
-     * @var \Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|int|mixed
+     * @var int
      */
     public $tries = 5;
 
     /**
      * The number of minutes to wait before the webhook will be retried
      *
-     * @var \Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|int|mixed
+     * @var int
      */
     public $retryInterval;
 
