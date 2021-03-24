@@ -90,8 +90,10 @@ class BaseWebhookTest extends TestCase
         ]);
     }
 
-    public function testWebhookIsLogged()
+    public function testWebhookIsLoggedWhenEnabled()
     {
+        config(['webhook.log_webhook' => true]);
+
         $url = $this->faker->url;
 
         $request = new HttpClient();
@@ -106,6 +108,29 @@ class BaseWebhookTest extends TestCase
         $this->logWebhook($response, $data);
 
         $this->assertDatabaseHas('webhook_logs', [
+            'response_status_code' => $response->statusCode(),
+            'url' => $url
+        ]);
+    }
+
+    public function testWebhookIsNotLoggedWhenDisabled()
+    {
+        config(['webhook.log_webhook' => false]);
+
+        $url = $this->faker->url;
+
+        $request = new HttpClient();
+        $response = $request->get($this->faker->url);
+
+        $webhook = new TestWebhook();
+        $data = $webhook
+            ->url($url)
+            ->withSignature('x-key', $this->faker->md5)
+            ->prepareWebhook();
+
+        $this->logWebhook($response, $data);
+
+        $this->assertDatabaseMissing('webhook_logs', [
             'response_status_code' => $response->statusCode(),
             'url' => $url
         ]);

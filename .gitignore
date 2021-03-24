@@ -3,4 +3,5 @@ vendor
 .DS_Store
 composer.lock
 .idea
+html
 .phpunit.result.cache

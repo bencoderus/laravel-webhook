@@ -1,24 +1,97 @@
-# Very short description of the package
+# Laravel Webhook
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/bencoderus/webhook.svg?style=flat-square)](https://packagist.org/packages/bencoderus/webhook)
-[![Build Status](https://img.shields.io/travis/bencoderus/webhook/master.svg?style=flat-square)](https://travis-ci.org/bencoderus/webhook)
-[![Quality Score](https://img.shields.io/scrutinizer/g/bencoderus/webhook.svg?style=flat-square)](https://scrutinizer-ci.com/g/bencoderus/webhook)
-[![Total Downloads](https://img.shields.io/packagist/dt/bencoderus/webhook.svg?style=flat-square)](https://packagist.org/packages/bencoderus/webhook)
+[![Latest Stable Version](https://poser.pugx.org/bencoderus/laravel-webhook/v)](//packagist.org/packages/bencoderus/laravel-webhook)
+[![Total Downloads](https://poser.pugx.org/bencoderus/laravel-webhook/downloads)](//packagist.org/packages/bencoderus/laravel-webhook)
+[![License](https://poser.pugx.org/bencoderus/laravel-webhook/license)](//packagist.org/packages/bencoderus/laravel-webhook)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bencoderus/laravel-webhook/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bencoderus/laravel-webhook/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/bencoderus/laravel-webhook/badges/build.png?b=master)](https://scrutinizer-ci.com/g/bencoderus/laravel-webhook/build-status/master)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+Laravel webhook allows businesses to send webhooks to their merchants/clients with ease. This package also introduces a
+new artisan command to generate a webhook class.
+
+## Requirement
+
+- Composer v1/v2
+- Php >= 7.3
+- Laravel (6 and above).
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require bencoderus/webhook
+composer require bencoderus/laravel-webhook
 ```
 
-## Usage
+## Setup
+
+Publish basic components. (migrations and configuration files)
 
 ``` php
-// Usage description here
+php artisan webhook:install
+```
+
+Run migrations
+
+```bash
+php artisan migrate
+```
+
+## Basic usage
+
+Create a new webhook class
+
+```bash
+php artisan make:webhook PaymentWebhook
+```
+
+Creates a new webhook class in App\Http\Webhooks
+
+You can format your webhook payload like a resource.
+
+```php
+public function data(): array
+    {
+        return [
+            'status' => $this->status,
+            'amount' => $this->amount,
+            'currency' => 'USD',
+        ];
+    }
+```
+
+<br/>
+Sending a webhook.
+
+```php
+$transaction = Transaction::first();
+$webhook = new PaymentWebhook($transaction);
+$webhook->url('https://httpbin.com')->send();
+```
+
+Sending with an encrypted signature
+
+```php
+$transaction = Transaction::first();
+
+$webhook = new PaymentWebhook($transaction);
+$webhook->url('https://httpbin.com')
+        ->withSignature('x-key', 'value_to_hash')
+        ->send();
+````
+
+The default hashing algorithm is sha512 you can change it by passing a different hashing algorithm as the third
+parameter for the withSignature method. PHP currently supports over 50 hashing algorithms.
+
+Sending webhooks without using a Queue.
+<br/>
+By default, all webhooks are dispatched using a queue to facilitate webhook retrial after failure. You can also send
+webhooks without using a Queue by passing ``false``  to the send method.
+
+```php
+$transaction = Transaction::first();
+$webhook = new PaymentWebhook($transaction);
+$webhook->url('https://httpbin.com')->send(false);
 ```
 
 ### Testing
@@ -26,6 +99,11 @@ composer require bencoderus/webhook
 ``` bash
 composer test
 ```
+
+## Configuration
+
+- You can enable or disable sending webhook via config/webhook.php.
+- You can also enable or disable logging webhook via config/webhook.php and more.
 
 ### Changelog
 
@@ -37,7 +115,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ### Security
 
-If you discover any security related issues, please email bencoderus@gmail.com instead of using the issue tracker.
+If you discover any security related issues, please email me@biduwe.com instead of using the issue tracker.
 
 ## Credits
 
@@ -47,7 +125,3 @@ If you discover any security related issues, please email bencoderus@gmail.com i
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).

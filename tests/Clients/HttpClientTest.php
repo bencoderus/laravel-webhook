@@ -34,6 +34,14 @@ class HttpClientTest extends TestCase
         $this->assertSame($response->statusCode(), 200);
     }
 
+    public function testHttpClientCanMakeAPatchRequest(): void
+    {
+        $request = new HttpClient();
+        $response = $request->patch($this->faker->url);
+
+        $this->assertSame($response->statusCode(), 200);
+    }
+
     public function testHttpClientCanMakeADeleteRequest(): void
     {
         $request = new HttpClient();
