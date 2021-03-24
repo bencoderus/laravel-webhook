@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class InstallCommand extends Command
 {
-    protected $signature = 'webhook:setup';
+    protected $signature = 'webhook:install';
 
     protected $description = 'Install Webhook Dependencies';
 

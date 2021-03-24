@@ -16,7 +16,7 @@ class InstallCommandTest extends TestCase
 
         $this->assertFalse(File::exists(config_path('webhook.php')));
 
-        Artisan::call('webhook:setup');
+        Artisan::call('webhook:install');
 
         $this->assertTrue(File::exists(config_path('webhook.php')));
         $this->assertTrue(class_exists('CreateWebhookLogsTable'));
