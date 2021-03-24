@@ -1,3 +1,5 @@
+<p align="center"><img src="/images/preview.jpg" alt="Laravel webhook preview"></p>
+
 # Laravel Webhook
 
 [![Latest Stable Version](https://poser.pugx.org/bencoderus/laravel-webhook/v)](//packagist.org/packages/bencoderus/laravel-webhook)
@@ -10,8 +12,8 @@ new artisan command to generate a webhook class.
 
 ## Requirement
 
-- Composer v1/v2
-- Php >= 7.2
+- Composer v1.0/2.0
+- Php (7.3 and above)
 - Laravel (6 and above).
 
 ## Installation
