@@ -65,6 +65,7 @@ Sending a webhook.
 
 ```php
 $transaction = Transaction::first();
+
 $webhook = new PaymentWebhook($transaction);
 $webhook->url('https://httpbin.com')->send();
 ```
@@ -90,6 +91,7 @@ webhooks without using a Queue by passing ``false``  to the send method.
 
 ```php
 $transaction = Transaction::first();
+
 $webhook = new PaymentWebhook($transaction);
 $webhook->url('https://httpbin.com')->send(false);
 ```
