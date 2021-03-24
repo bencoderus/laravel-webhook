@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^7.2.5|^8.0",
-        "guzzlehttp/guzzle": "~6|~7",
+        "guzzlehttp/guzzle": "^6|^7",
         "illuminate/support": "^6.0|^7.0|^8.0"
     },
     "require-dev": {
@@ -35,7 +35,9 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit"
+        "test": "vendor/bin/phpunit",
+        "test-f": "vendor/bin/phpunit --filter",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     },
     "config": {
         "sort-packages": true
