@@ -1,7 +1,6 @@
 # Laravel Webhook
 
 [![Latest Stable Version](https://poser.pugx.org/bencoderus/laravel-webhook/v)](//packagist.org/packages/bencoderus/laravel-webhook)
-[![Total Downloads](https://poser.pugx.org/bencoderus/laravel-webhook/downloads)](//packagist.org/packages/bencoderus/laravel-webhook)
 [![License](https://poser.pugx.org/bencoderus/laravel-webhook/license)](//packagist.org/packages/bencoderus/laravel-webhook)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bencoderus/laravel-webhook/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bencoderus/laravel-webhook/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/bencoderus/laravel-webhook/badges/build.png?b=master)](https://scrutinizer-ci.com/g/bencoderus/laravel-webhook/build-status/master)
@@ -12,7 +11,7 @@ new artisan command to generate a webhook class.
 ## Requirement
 
 - Composer v1/v2
-- Php >= 7.3
+- Php >= 7.2
 - Laravel (6 and above).
 
 ## Installation
