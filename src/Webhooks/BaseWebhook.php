@@ -26,7 +26,7 @@ abstract class BaseWebhook
     private $url;
 
     /**
-     * The data that will be dispatched to the outgoing webhook.
+     * The data that will be dispatched with the outgoing webhook.
      *
      * @var array
      */
@@ -109,6 +109,8 @@ abstract class BaseWebhook
     }
 
     /**
+     * Generate webhook data.
+     *
      * @return array
      */
     public function prepareWebhook(): array
@@ -129,6 +131,8 @@ abstract class BaseWebhook
     }
 
     /**
+     * Format outgoing webhook payload
+     *
      * @return array
      */
     private function generatePayload(): array
@@ -142,6 +146,8 @@ abstract class BaseWebhook
     }
 
     /**
+     * Webhook payload data.
+     *
      * @return mixed
      */
     abstract public function data();
